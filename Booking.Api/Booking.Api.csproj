@@ -12,4 +12,8 @@
     <ProjectReference Include="..\Booking.Domain\Booking.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Services\Abstraction\" />
+  </ItemGroup>
+
 </Project>

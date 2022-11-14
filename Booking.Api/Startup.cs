@@ -1,5 +1,5 @@
-using Booking.Api.Services;
-using Booking.Api.Services.Abstraction;
+
+using Booking.Api.Middleware;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -35,12 +35,7 @@ namespace Booking.Api
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Booking.Api", Version = "v1" });
             });
             services.AddSingleton<DataSource>();
-            services.AddSingleton<MyFirstService>();
-
-            services.AddSingleton<ISingletonOperation, SingletonOperation>();
-            services.AddTransient<ITransientOperation, TransientOperation>();
-            services.AddScoped<IScopedOperation, ScopedOperation>();
-
+            services.AddHttpContextAccessor(); // this will add headers middleware
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -58,6 +53,8 @@ namespace Booking.Api
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseDateTimeHeader(); // custom middleware class in the API -> MIDDLEWARE -> DateTimeHeader
 
             app.UseEndpoints(endpoints =>
             {
