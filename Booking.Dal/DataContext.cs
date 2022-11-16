@@ -16,9 +16,9 @@ namespace Booking.Dal
         }
 
         //represent the table
-        public DbSet<Hotel> hotels { get; set; }
-        public DbSet<Room> rooms { get; set; }
-        public DbSet<Reservation> reservations { get; set; }
+        public DbSet<Hotel> Hotels { get; set; }
+        public DbSet<Room> Rooms { get; set; }
+        public DbSet<Reservation> Reservations { get; set; }
 
     }
 }
