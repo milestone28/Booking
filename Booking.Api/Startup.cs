@@ -1,6 +1,8 @@
 
 using Booking.Api.Middleware;
 using Booking.Dal;
+using Booking.Dal.Repositories;
+using Booking.Domain.Abstractions.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -42,6 +44,7 @@ namespace Booking.Api
             var cs = Configuration.GetConnectionString("Default"); // get the json file for the setting database
             services.AddDbContext<DataContext>(options => { options.UseSqlServer(cs); }); // UseSqlServer because this the one we are using
             services.AddAutoMapper(typeof(Startup));
+            services.AddScoped<IHotelsRepository, HotelRepository>();
 
         }
 
